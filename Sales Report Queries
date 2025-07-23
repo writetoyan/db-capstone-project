@@ -1,0 +1,19 @@
+TASK #1
+
+CREATE VIEW OrdersView AS SELECT OrderID, Quantity, TotalCost FROM Orders WHERE QUantity > 2;
+
+
+TASK #2
+
+SELECT Customer.CustomerID, Customer.Name, Orders.OrderID, Orders.TotalCost, Menu.MenuName, MenuItems.CourseName, MenuItems.StarterName FROM 
+Customer INNER JOIN Orders ON Customer.CustomerID = Orders.CustomerID
+INNER JOIN Menu ON Orders.MenuID = Menu.MenuID
+INNER JOIN MenuItems ON Menu.MenuItemID = MenuItems.MenuItemID
+WHERE Orders.TotalCost > 150 ORDER BY Orders.TotalCost ASC;
+
+
+TASK #3
+
+SELECT Menu.MenuName FROM Menu INNER JOIN
+Orders ON Menu.MenuID = Orders.MenuID WHERE
+Orders.Quantity = ANY (SELECT Quantity FROM Orders WHERE Quantity > 2); 

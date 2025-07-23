@@ -1,0 +1,3 @@
+CustomerID,Name,OrderID,TotalCost,MenuName,CourseName,StarterName
+1,Alex,1,250,American,Spaghetti,"Oeuf mayo"
+2,Aurelien,3,350,Australian,Lasagne,Salad

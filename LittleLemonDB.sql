@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `LittleLemonDM` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `LittleLemonDM`;
+CREATE DATABASE  IF NOT EXISTS `LittleLemonDB` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `LittleLemonDB`;
 -- MySQL dump 10.13  Distrib 8.0.42, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: LittleLemonDM
+-- Host: 127.0.0.1    Database: LittleLemonDB
 -- ------------------------------------------------------
 -- Server version	8.0.42-0ubuntu0.22.04.1
 
@@ -134,11 +134,10 @@ DROP TABLE IF EXISTS `Menu`;
 CREATE TABLE `Menu` (
   `MenuID` int NOT NULL,
   `Cuisine` varchar(45) NOT NULL,
-  `Starter` varchar(45) NOT NULL,
-  `Courses` varchar(45) NOT NULL,
-  `Drinks` varchar(45) NOT NULL,
-  `Desserts` varchar(45) NOT NULL,
-  PRIMARY KEY (`MenuID`)
+  `ItemID` int NOT NULL,
+  PRIMARY KEY (`MenuID`),
+  KEY `itemID_idx` (`ItemID`),
+  CONSTRAINT `itemID` FOREIGN KEY (`ItemID`) REFERENCES `MenuItems` (`ItemID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -149,6 +148,31 @@ CREATE TABLE `Menu` (
 LOCK TABLES `Menu` WRITE;
 /*!40000 ALTER TABLE `Menu` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Menu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `MenuItems`
+--
+
+DROP TABLE IF EXISTS `MenuItems`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `MenuItems` (
+  `ItemID` int NOT NULL,
+  `Type` varchar(45) NOT NULL,
+  `Name` varchar(45) NOT NULL,
+  `Price` int NOT NULL,
+  PRIMARY KEY (`ItemID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MenuItems`
+--
+
+LOCK TABLES `MenuItems` WRITE;
+/*!40000 ALTER TABLE `MenuItems` DISABLE KEYS */;
+/*!40000 ALTER TABLE `MenuItems` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -191,4 +215,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-19 15:01:38
+-- Dump completed on 2025-07-20 11:58:24
