@@ -9,3 +9,17 @@ TASK #2
 PREPARE GetOrderDetail FROM 'SELECT OrderID, Quantity, TotalCost FROM Orders WHERE CustomerID = ?';
 SET @id = 1;
 execute GetOrderDetail using @id;
+
+TASK #3
+
+DELIMITER //
+
+CREATE PROCEDURE CancelOrder(IN id INT)
+BEGIN
+DECLARE msg VARCHAR(255);
+DELETE FROM Orders WHERE OrderID = id;
+SET msg = CONCAT("Order", id, " is cancelled");
+SELECT msg AS Confirmation;
+END //
+
+DELIMITER ;
